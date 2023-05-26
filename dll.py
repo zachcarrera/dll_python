@@ -6,8 +6,8 @@ class DLLNode:
 
     def __init__(self, value) -> None:
         self.value = value
-        self.prev = None
-        self.next = None
+        self.prev: DLLNode | None = None
+        self.next: DLLNode | None = None
 
 
 class DLList:
@@ -16,6 +16,23 @@ class DLList:
     def __init__(self) -> None:
         self.head = None
         self.tail = None
+
+    def add_to_front(self, value):
+        """add a node to the front of the list"""
+
+        new_node = DLLNode(value)
+
+        # insert into empty list
+        if self.head is None:
+            self.head = new_node
+            self.tail = new_node
+            return self
+
+        # insert into list with one or more nodes
+        new_node.next = self.head
+        self.head.prev = new_node
+        self.head = new_node
+        return self
 
     def print_list(self):
         """print the doubly linked list"""
