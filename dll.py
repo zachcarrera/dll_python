@@ -16,3 +16,20 @@ class DLList:
     def __init__(self) -> None:
         self.head = None
         self.tail = None
+
+    def print_list(self):
+        """print the doubly linked list"""
+
+        if self.head is None:
+            print("Empty List")
+            return self
+        runner = self.head
+
+        while runner is not None:
+            runner = runner.next
+
+        return self
+
+
+dll_1 = DLList()
+dll_1.print_list()
