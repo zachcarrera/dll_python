@@ -18,6 +18,8 @@ class DLList:
         self.tail: DLLNode | None = None
 
     def is_empty(self):
+        """check if a list is empty"""
+
         return self.head is None
 
     def add_to_front(self, value):
@@ -72,7 +74,7 @@ class DLList:
     def print_list(self):
         """print the doubly linked list"""
 
-        if self.head is None:
+        if self.is_empty():
             print("Empty List")
             return self
         runner = self.head
