@@ -17,13 +17,16 @@ class DLList:
         self.head: DLLNode | None = None
         self.tail: DLLNode | None = None
 
+    def is_empty(self):
+        return self.head is None
+
     def add_to_front(self, value):
         """add a node to the front of the list"""
 
         new_node = DLLNode(value)
 
         # insert into empty list
-        if self.head is None:
+        if self.is_empty():
             self.head = new_node
             self.tail = new_node
             return self
@@ -38,7 +41,7 @@ class DLList:
         """add a node to the back of the list"""
 
         # empty list
-        if self.head is None:
+        if self.is_empty():
             return self.add_to_front(value)
 
         # not empty list
@@ -48,6 +51,23 @@ class DLList:
         self.tail.next = new_node
         self.tail = new_node
         return self
+
+    def remove_from_front(self):
+        """remove a node from the front of the list"""
+
+        if self.is_empty():
+            return
+
+        if self.head.next is None:
+            removed_node = self.head
+            self.tail = None
+            self.head = None
+            return removed_node.value
+
+        removed_node = self.head
+        self.head = self.head.next
+        self.head.prev = None
+        return removed_node.value
 
     def print_list(self):
         """print the doubly linked list"""
