@@ -22,6 +22,21 @@ class DLList:
 
         return self.head is None
 
+    def size(self):
+        """return the size of the doubly linked list"""
+
+        if self.is_empty():
+            return 0
+
+        runner = self.head
+        count = 1
+
+        while runner is not None:
+            runner = runner.next
+            count += 1
+
+        return count
+
     def add_to_front(self, value):
         """add a node to the front of the list"""
 
@@ -60,6 +75,7 @@ class DLList:
         if self.is_empty():
             return
 
+        # if there only one node
         if self.head.next is None:
             removed_node = self.head
             self.tail = None
