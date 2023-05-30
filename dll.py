@@ -87,6 +87,24 @@ class DLList:
         self.head.prev = None
         return removed_node.value
 
+    def remove_from_back(self):
+        """remove a node form the back of the list"""
+
+        if self.is_empty():
+            return
+
+        # if there is only one node
+        # self.head needs to be set to None
+        if self.head.next is None:
+            removed_node = self.tail
+            self.tail = None
+            self.head = None
+            return removed_node.value
+
+        removed_node = self.tail
+        self.tail = self.tail.prev
+        return removed_node.value
+
     def print_list(self):
         """print the doubly linked list"""
 
