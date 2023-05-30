@@ -105,6 +105,33 @@ class DLList:
         self.tail = self.tail.prev
         return removed_node.value
 
+    def remove_value(self, value):
+        """remove the first node that is found with the given value"""
+
+        if self.is_empty():
+            return
+
+        runner = self.head
+
+        while runner is not None and runner.value != value:
+            runner = runner.next
+
+        # either value found or at the end of the list
+        if runner is None:
+            return
+
+        # remove from middle, front or back
+        if runner is self.head:
+            return self.remove_from_front()
+
+        if runner is self.tail:
+            return self.remove_from_back()
+
+        runner.prev.next = runner.next
+        runner.next.prev = runner.prev
+
+        return runner.value
+
     def print_list(self):
         """print the doubly linked list"""
 
